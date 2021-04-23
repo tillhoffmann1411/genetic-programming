@@ -1,7 +1,13 @@
+# The vitual enviroment
+venv
+
+# all the data
 data/*
+
+# auto generated files
+*.png
 __pycache__
 .ipynb_checkpoints
-venv
-*.png
+
+# System Files
 .DS_Store
-data/
