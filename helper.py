@@ -1,6 +1,5 @@
 from deap.tools.support import Logbook
 import matplotlib.pyplot as plt
-import networkx as nx
 import pygraphviz as pgv
 
 
@@ -27,7 +26,7 @@ def plot(log: Logbook):
   ax1.legend(lns, labs, loc="center right")
   plt.show()
 
-def plot_tree(nodes, edges, labels):
+def plot_tree(nodes, edges, labels, name: str = "tree"):
   g = pgv.AGraph()
   g.add_nodes_from(nodes)
   g.add_edges_from(edges)
@@ -37,4 +36,36 @@ def plot_tree(nodes, edges, labels):
       n = g.get_node(i)
       n.attr["label"] = labels[i]
 
-  g.draw("tree.png")
+  name = name + '.png'
+  g.draw(name)
+
+
+def write_file(tree):
+  f = open("gen_code.py", "a")
+  f.write("# GP generated code\n" + str(tree) + "\n")
+
+
+def is_prime(num: float):
+  # define a flag variable
+  flag = False
+
+  # prime numbers are greater than 1
+  if num > 1:
+      # check for factors
+      for i in range(2, num):
+          if (num % i) == 0:
+              # if factor is found, set flag to True
+              flag = True
+              # break out of loop
+              break
+  return flag
+
+
+def if_then_else(input, output1, output2):
+  return output1 if is_prime(input) else output2
+
+def protectedDiv(left, right):
+    try:
+        return left / right
+    except ZeroDivisionError:
+        return 1
