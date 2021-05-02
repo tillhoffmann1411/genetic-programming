@@ -8,6 +8,7 @@ data/*
 *.png
 __pycache__
 .ipynb_checkpoints
+gen_code.py
 
 # System Files
 .DS_Store
