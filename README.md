@@ -10,7 +10,8 @@
 
 Adding the data:
 1. Go to [kaggle](https://www.kaggle.com/dsv/1054465) and download the data
-2. Extract the files and put the etf and stocks folder directly into the ./data folder
+2. Creating a data folder in the root directory
+3. Extract the files and put the etf and stocks folder directly into the ./data folder
 
 ## 🔗 References
 ### Packages
