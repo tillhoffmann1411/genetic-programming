@@ -37,7 +37,7 @@ def plot_tree(nodes, edges, labels, name: str = "tree"):
       n.attr["label"] = labels[i]
 
   name = name + '.png'
-  g.draw(name)
+  g.draw('images/' + name)
 
 
 def write_file(tree):
