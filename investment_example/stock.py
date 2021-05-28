@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 import pandas as pd
+import numpy as np
 import os.path
 from enum import Enum
 
@@ -36,23 +37,23 @@ class Stock:
         filtered_data = self.get_data_between(start, end)
 
         if self._is_data_empty(filtered_data[1:]):
-            return None
+            return 0.0
         returns = filtered_data.resample('Y').ffill().pct_change().mean()
 
         returns = returns.to_frame()
         returns.columns = ['avg_return']
-        return returns.iloc[0][0]
+        return returns.iloc[0][0] if not np.isnan(returns.iloc[0][0]) else 0.0
 
     def get_avg_risk(self, start: datetime = 0, end: datetime = 0) -> float:
         filtered_data = self.get_data_between(start, end)
 
         if self._is_data_empty(filtered_data):
-            return None
+            return 0.0
     
         std_data = filtered_data.resample('D').ffill().pct_change()
-        # 252 trayding day in a year
+        # 252 trayding days in a year
         cov = std_data.cov() * 252
-        return cov.iloc[0][0]
+        return cov.iloc[0][0] if not np.isnan(cov.iloc[0][0]) else 0.0
 
     def get_data_between(self, start: datetime = 0, end: datetime = 0) -> pd.DataFrame:
         if start != 0 and end != 0:

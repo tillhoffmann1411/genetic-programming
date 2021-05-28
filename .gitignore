@@ -2,7 +2,9 @@
 venv
 
 # all the data
-data/*
+**/data/*
+**/results/*
+**/images/*
 
 # auto generated files
 *.png
